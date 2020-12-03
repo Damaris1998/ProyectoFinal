@@ -42,7 +42,7 @@ Route::middleware('auth')->group(function(){
         Route::prefix('personas')->group(function(){
             Route::get('', [PersonasController::class, 'index'])->name('persona');
             Route::get('add', [PersonasController::class, 'add'])->name('persona.add');
-            Route::get('edit/{model}', [PersonasController::class, 'add'])->name('persona.edit');
+            Route::get('edit/{model}', [PersonasController::class, 'edit'])->name('persona.edit');
             Route::post('', [PersonasController::class, 'store'])->name('persona.store');
             Route::patch('{model}', [PersonasController::class, 'update'])->name('persona.update');
             Route::delete('{model}', [PersonasController::class, 'destroy'])->name('persona.delete');
