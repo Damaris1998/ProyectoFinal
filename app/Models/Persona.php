@@ -28,7 +28,7 @@ class Persona extends Model
         "cooperativa_id",
     ];
 
-
+                    //FullName => full_name
     public function getFullNameAttribute()
     {
         return $this->nombres . '  ' . $this->apellidos;

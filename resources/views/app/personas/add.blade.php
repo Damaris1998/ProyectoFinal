@@ -2,21 +2,20 @@
 @section('content')
 <div class="row">
     <div class="col-lg-12">
-        @foreach ($errors->all() as $error)
-        <div class="alert alert-primary alert-dismissible fade show" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                <span class="sr-only">Close</span>
-            </button>
-            <strong>Holy guacamole!</strong> {{ $error }}
+
+        <div class="card border-primary">
+            <div class="card-body">
+                <h4 class="card-title">Datos de la persona</h4>
+                <p class="card-text">
+
+                    {!! Form::open(['route' => 'persona.store']) !!}
+                    @include('app.personas.fieldsPersonas')
+                    {!! Form::submit('Guardar') !!}
+                    {!! Form::close() !!}
+                </p>
+            </div>
         </div>
-        
-        @endforeach         
-        
-        {!! Form::open(['route' => 'persona.store']) !!}
-        @include('app.personas.fieldsPersonas')
-        {!! Form::submit('Guardar') !!}
-        {!! Form::close() !!}
+
     </div>
 </div>
 @endsection

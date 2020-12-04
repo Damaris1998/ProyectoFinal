@@ -11,7 +11,7 @@ class PersonasController extends Controller
 {
 
     public $rules = [
-        "nombres" => ['required', 'string'],
+        "nombres" => ['required', 'string','max:60'],
         "apellidos" => ['required', 'string'],
         "identidad" => ['required', 'string'],
         "sexo_id" => ['required', 'numeric'],
@@ -30,23 +30,14 @@ class PersonasController extends Controller
         return view('app.personas.index', compact("personas"));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function add()
     {     $model=false; 
 
         return view('app.personas.add',compact("model"));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+   
     public function store(Request $request, Persona $model)
     {
         $campos = $this->validate($request, $this->rules);
