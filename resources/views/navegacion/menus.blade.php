@@ -7,8 +7,8 @@
       Catalogos
     </a>
     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-    <a class="dropdown-item" href="{!! route('combustible') !!}">Combustibles</a>
-    <a class="dropdown-item" href="{!! route('color') !!}">Colores</a>
+    <a class="dropdown-item" href="{!! route('enfermedad') !!}">Enfermedades</a>
+    <a class="dropdown-item" href="{!! route('cita') !!}">Citas</a>
     </div>
   </li>
   <li class="nav-item dropdown">
@@ -16,7 +16,7 @@
       Registros
     </a>
     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-    <a class="dropdown-item" href="{!! route('persona') !!}">Personas</a>
+    <a class="dropdown-item" href="{!! route('paciente') !!}">Pacientes</a>
     </div>
   </li>
   @endguest

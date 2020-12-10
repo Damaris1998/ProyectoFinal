@@ -2,74 +2,40 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Barrio;
-use App\Models\Color;
-use App\Models\Cooperativa;
-use App\Models\Etnia;
+use App\Models\Enfermedad;
+use App\Models\Cita;
 use App\Models\Sexo;
 use Illuminate\Http\Request;
 
 class ApiAppsController extends Controller
 {
-    public function colores(Request $request)
+    public function sexos(Request $request)
     {
-        $rows = Color::query()
-            ->when($request->buscar, function ($query) use ($request) {
-                $buscar = "%" . $request->buscar . "%";
-                $query->where('color', 'ilike', $buscar);
-            })
-            ->get();
+        $rows = Sexo::query()
+        ->When($request->buscar, function ($query) use ($request){
+            $buscar = "%" . $request->buscar . "%";
+            $query->where('sexo_full','ilike', $buscar);
+        })
+         ->get();
         $data = [
             'data' => $rows
         ];
         return response()->json($data, 200);
     }
 
-    public function cooperativas(Request $request)
+
+    public function enfermedad()
     {
-        $rows = Cooperativa::query()
-            ->when($request->buscar, function ($query) use ($request) {
-                $buscar = "%" . $request->buscar . "%";
-                $query->where('cooperativa', 'ilike', $buscar);
-            })
-            ->get();
+        $rows = Enfermedad::all();
         $data = [
             'data' => $rows
         ];
         return response()->json($data, 200);
     }
 
-    public function barrios(Request $request)
+    public function citas()
     {
-        $rows = Barrio::query()
-            ->when($request->buscar, function ($query) use ($request) {
-                $buscar = "%" . $request->buscar . "%";
-                $query->where('barrio', 'ilike', $buscar);
-            })
-            ->get();
-        $data = [
-            'data' => $rows
-        ];
-        return response()->json($data, 200);
-    }
-
-    public function etnias(Request $request)
-    {
-        $rows = Etnia::query()
-            ->when($request->buscar, function ($query) use ($request) {
-                $buscar = "%" . $request->buscar . "%";
-                $query->where('etnia', 'ilike', $buscar);
-            })
-            ->get();
-        $data = [
-            'data' => $rows
-        ];
-        return response()->json($data, 200);
-    }
-
-    public function sexos()
-    {
-        $rows = Sexo::all();
+        $rows = Cita::all();
         $data = [
             'data' => $rows
         ];

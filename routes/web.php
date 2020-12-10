@@ -1,12 +1,12 @@
 <?php
 
 use App\Http\Controllers\CatalogosController;
-use App\Http\Controllers\CombustibleController;
+use App\Http\Controllers\CitaController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ColorController;
+use App\Http\Controllers\EnfermedadesController;
 use App\Http\Controllers\ApiAppsController;
 use Illuminate\Http\Request;
-use App\Http\Controllers\PersonasController;
+use App\Http\Controllers\PacientesController;
 
 
 /*
@@ -24,53 +24,46 @@ Route::get('/', function () {
     return view('welcome');
 })->middleware('auth');
 
-Route::get('/listas', function () {
-    return view('listas');
-})->middleware('auth');
 
-Route::post('/listas', function (Request $request) {
-    return response()->json($request->all());
-})->name('listas')->middleware('auth');
-
-Auth::routes(['register'=>false]);
+Auth::routes(['register'=>true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::middleware('auth')->group(function(){
 
     Route::prefix('app')->group(function(){
-        Route::prefix('personas')->group(function(){
-            Route::get('', [PersonasController::class, 'index'])->name('persona');
-            Route::get('add', [PersonasController::class, 'add'])->name('persona.add');
-            Route::get('edit/{model}', [PersonasController::class, 'edit'])->name('persona.edit');
-            Route::post('', [PersonasController::class, 'store'])->name('persona.store');
-            Route::patch('{model}', [PersonasController::class, 'update'])->name('persona.update');
-            Route::delete('{model}', [PersonasController::class, 'destroy'])->name('persona.delete');
+        Route::prefix('pacientes')->group(function(){
+            Route::get('', [PacientesController::class, 'index'])->name('paciente');
+            Route::get('add', [PacientesController::class, 'add'])->name('paciente.add');
+            Route::get('edit/{model}', [PacientesController::class, 'edit'])->name('paciente.edit');
+            Route::post('', [PacientesController::class, 'store'])->name('paciente.store');
+            Route::patch('{model}', [PacientesController::class, 'update'])->name('paciente.update');
+            Route::delete('{model}', [PacientesController::class, 'destroy'])->name('paciente.delete');
         });
     });
 
     Route::prefix('catalogos')->group(function(){
-        Route::prefix('colores')->group(function () {
-            Route::get('', [ColorController::class, 'index'])->name('color');
-            Route::get('add', [ColorController::class, 'add'])->name('color.add');
-            Route::get('edit/{model}', [ColorController::class, 'edit'])->name('color.edit');
-            Route::post('', [ColorController::class, 'store'])->name('color.store');
-            Route::patch('{model}', [ColorController::class, 'update'])->name('color.update');
-            Route::delete('{model}', [ColorController::class, 'destroy'])->name('color.delete');
+        Route::prefix('enfermedades')->group(function () {
+            Route::get('', [EnfermedadesController::class, 'index'])->name('enfermedad');
+            Route::get('add', [EnfermedadesController::class, 'add'])->name('enfermedad.add');
+            Route::get('edit/{model}', [EnfermedadesController::class, 'edit'])->name('enfermedad.edit');
+            Route::post('', [EnfermedadesController::class, 'store'])->name('enfermedad.store');
+            Route::patch('{model}', [EnfermedadesController::class, 'update'])->name('enfermedad.update');
+            Route::delete('{model}', [EnfermedadesController::class, 'destroy'])->name('enfermedad.delete');
         });
 
-        Route::prefix('combustible')->group(function () {
-            Route::get('', [CombustibleController::class, 'index'])->name('combustible');
-            Route::get('add', [CombustibleController::class, 'add'])->name('combustible.add');
-            Route::post('', [CombustibleController::class, 'store'])->name('combustible.store');
-            Route::delete('{model}', [CombustibleController::class, 'destroy'])->name('combustible.delete');
-            Route::get('edit/{model}', [CombustibleController::class, 'show'])->name('combustible.edit');
-            Route::patch('{model}', [CombustibleController::class, 'update'])->name('combustible.update');
+        Route::prefix('citas')->group(function () {
+            Route::get('', [CitaController::class, 'index'])->name('cita');
+            Route::get('add', [CitaController::class, 'add'])->name('cita.add');
+            Route::get('edit/{model}', [CitaController::class, 'edit'])->name('cita.edit');
+            Route::post('', [CitaController::class, 'store'])->name('cita.store');
+            Route::patch('{model}', [CitaController::class, 'update'])->name('cita.update');
+            Route::delete('{model}', [CitaController::class, 'destroy'])->name('cita.delete');
         });
+
+      
         
-        Route::prefix('catalogos')->group(function () {
-            Route::get('combustible', [CatalogosController::class, 'getCombustibles']);
-        });
+        
     });
 });
 
@@ -80,10 +73,9 @@ Rutas para catalogos de la api
 */
 Route::middleware('auth')->group(function(){
     Route::prefix('api-app')->group(function(){
-        Route::get('colores', [ApiAppsController::class, 'colores']);
+       
         Route::get('sexos', [ApiAppsController::class, 'sexos']);
-        Route::get('cooperativas', [ApiAppsController::class, 'cooperativas']);
-        Route::get('barrios', [ApiAppsController::class, 'barrios']);
-        Route::get('etnias', [ApiAppsController::class, 'etnias']);
+        Route::get('enfermedad', [ApiAppsController::class, 'enfermedad']);
+        Route::get('citas', [ApiAppsController::class, 'citas']);
     });
 });
